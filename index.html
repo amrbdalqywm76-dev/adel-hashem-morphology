@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عادل هاشم الياء واو ، والواو والياء الف</title>
+    <style>
+        :root {
+            --primary: #0f4c81;
+            --primary-dark: #1b365d;
+            --accent: #f5a623;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --border: #e2e8f0;
+            --success: #27ae60;
+            --danger: #e74c3c;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 50px; line-height: 1.7; }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white; padding: 30px 20px; text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100;
+        }
+
+        .header h1 { font-size: 1.8rem; margin-bottom: 8px; color: #fff; }
+        .header p { font-size: 1rem; opacity: 0.9; }
+
+        .container { max-width: 900px; margin: 25px auto; padding: 0 15px; }
+
+        .card {
+            background: var(--card-bg); border-radius: 12px; padding: 25px;
+            margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid var(--border);
+        }
+
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 6px; color: var(--primary-dark); }
+        .input-group input {
+            width: 100%; padding: 12px; border: 2px solid var(--border);
+            border-radius: 8px; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--primary); }
+
+        .question-card { margin-bottom: 25px; border-right: 5px solid var(--primary); }
+        .question-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 15px; color: #111; }
+
+        .options-container { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn {
+            background: #f8fafc; border: 2px solid var(--border); padding: 12px 18px;
+            border-radius: 8px; text-align: right; cursor: pointer; font-size: 1rem;
+            transition: all 0.2s ease; display: flex; align-items: center;
+        }
+        .option-btn:hover { background: #edf2f7; }
+        .option-btn.selected { border-color: var(--primary); background: #ebf8ff; font-weight: bold; }
+
+        .btn-submit {
+            background: var(--primary); color: white; border: none; padding: 15px 30px;
+            font-size: 1.2rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+            width: 100%; transition: 0.3s; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-submit:hover { background: var(--primary-dark); }
+
+        .whatsapp-btn {
+            background: #25D366; color: white; border: none; padding: 15px 20px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+            width: 100%; display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-top: 15px; text-decoration: none; transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background: #1eb854; }
+
+        .retry-btn {
+            background: var(--accent); color: white; border: none; padding: 15px 20px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+            width: 100%; margin-top: 10px; transition: 0.3s;
+        }
+        .retry-btn:hover { background: #d98e11; }
+
+        .result-box { text-align: center; display: none; }
+        .score-display { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin: 15px 0; }
+        .badge { display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: bold; color: white; background: var(--primary); font-size: 1.1rem; }
+
+        .feedback {
+            margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 0.95rem; display: none; text-align: right;
+        }
+        .correct-fb { background: #e6fffa; color: #234e52; border-right: 4px solid var(--success); }
+        .incorrect-fb { background: #fff5f5; color: #742a2a; border-right: 4px solid var(--danger); }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>عادل هاشم الياء واو ، والواو والياء الف</h1>
+    <p>اختبار تفاعلي شامل في مادة الصرف - الصف الثالث الثانوي</p>
+</div>
+
+<div class="container">
+    <!-- شاشة البداية -->
+    <div id="start-screen" class="card">
+        <h2 style="color: var(--primary-dark); margin-bottom: 15px;">تعليمات الاختبار:</h2>
+        <ul style="margin-right: 20px; margin-bottom: 20px;">
+            <li>الاختبار يتكون من أسئلة شاملة لحالات (قلب الياء واواً وقلب الواو والياء ألفاً)[cite: 6].</li>
+            <li>تظهر الدرجة والنتيجة الإجمالية والتعليلات عقب إكمال وتأكيد تسليم الاختبار كاملاً[cite: 6].</li>
+            <li>يمكن للطالب أداء الاختبار أكثر من مرة للتمكن والتدرب.</li>
+            <li>يمكن إرسال تقرير النتيجة مباشرة للمعلم عبر الواتساب فور الانتهاء.</li>
+        </ul>
+        <div class="input-group">
+            <label for="student-name">اسم الطالب رباعياً:</label>
+            <input type="text" id="student-name" placeholder="أدخل اسمك الكريم هنا..." required>
+        </div>
+        <div class="input-group">
+            <label for="teacher-phone">رقم واتساب الاستاذ عادل هاشم لاستلام النتيجة:</label>
+            <input type="tel" id="teacher-phone" placeholder="أدخل رقم الهاتف مع الكود الدولى (مثال: 201000000000)">
+        </div>
+        <button class="btn-submit" onclick="startExam()">ابدأ الاختبار الآن</button>
+    </div>
+
+    <!-- شاشة الأسئلة -->
+    <div id="exam-screen" style="display: none;">
+        <div style="background: #e2e8f0; padding: 12px 20px; border-radius: 8px; font-weight: bold; color: var(--primary-dark); margin-bottom: 20px; display: flex; justify-content: space-between;">
+            <span>الطالب: <span id="display-name"></span></span>
+            <span>عدد الأسئلة: <span id="answered-count">0</span> / <span id="total-count"></span></span>
+        </div>
+
+        <form id="quiz-form">
+            <div id="questions-container"></div>
+            <button type="button" class="btn-submit" onclick="finishExam()">تسليم الاختبار وإظهار النتيجة</button>
+        </form>
+    </div>
+
+    <!-- شاشة النتيجة -->
+    <div id="result-screen" class="card result-box">
+        <h2>نتيجة الاختبار الصرفي</h2>
+        <div class="score-display" id="final-score">0 / 0</div>
+        <div class="badge" id="grade-badge">ممتاز</div>
+        <p style="margin-top: 15px; color: #555;" id="result-time"></p>
+
+        <a id="wa-link" href="#" target="_blank" class="whatsapp-btn">
+            📱 إرسال النتيجة والتقرير للأستاذ عادل هاشم عبر الواتساب
+        </a>
+        
+        <button class="retry-btn" onclick="resetExam()">إعادة محاولة الاختبار مرة أخرى 🔄</button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "1. الكلمة التي أُبدِلت فيها الياء واواً لوقوعها لَاماً لـ (فَعْلَى) اسماً هي:", ops: ["فَتْوَى", "طُوبَى", "مُوقِن", "دُنْيَا"], ans: 0, exp: "أصلها (فتيا) بالياء، وقعت الياء لاماً لـ (فَعْلَى) اسماً فقلبت واواً[cite: 6]." },
+        { q: "2. الأصل الصرفي لكلمة (فَتْوَى) قبل إبدال الياء واواً هو:", ops: ["فتيا", "فتوو", "فتوى", "فتيو"], ans: 0, exp: "لأنها من الفتيا، وقعت الياء لام اسم على وزن فَعْلَى فقلبت واواً[cite: 6]." },
+        { q: "3. تُقْلَب الياء واواً إذا وقعت عيناً لـ (فُعْلَى) اسماً، ومثاله الصرفي:", ops: ["طُوبَى", "دُنْيَا", "عُلْيَا", "قُصْوَى"], ans: 0, exp: "كلمة (طُوبَى) أصلها (طُيْبَى) عين لاسم على وزن فُعْلَى فقلبت واواً[cite: 6]." },
+        { q: "4. الكلمة التي وقعت فيها الياء مفردة ساكنة بعد ضمة في غير الجمع فَقُلبت واواً هي:", ops: ["مُوقِن", "مُوسِر", "طُوبَى", "(أ) و(ب) معاً"], ans: 3, exp: "مُوقِن أصلها (مُيْقِن) ومُوسِر أصلها (مُيْسِر) كلاهما سكنت فيهما الياء وأفردت بعد ضمة في غير الجمع[cite: 6]." },
+        { q: "5. إذا وقعت الياء لَاماً لـ (فَعْلَى) اسماً، فإن حكمها الصرفي القياسي هو:", ops: ["تُقْلَب الياءً همزة", "تُقْلَب الواو ألفاً", "تُقْلَب الياء واواً", "تصح الواو وتستقر"], ans: 2, exp: "تُقلب الياء واواً وجوباً مثل فتوى وتقوى ورضوى[cite: 6]." },
+        { q: "6. كلمة (تَقْوَى) جرى فيها إبدال صرفي قياسي هو:", ops: ["إبدال الواو ياءً", "إبدال الياء واواً لوقوعها لَاماً لـ (فَعْلَى) اسماً", "إبدال الياء ألفاً", "إبدال الواو ألفاً"], ans: 1, exp: "أصلها (تَقْيَا) من التقية، أُبدلت الياء واواً لوقوعها لام اسم على وزن فعلى[cite: 6]." },
+        { q: "7. الحكم الصرفي للياء إذا وقعت عيناً لـ (فُعْلَى) صِفَةً غير جارية مجرى الاسم هو:", ops: ["قلب الياء واواً", "تصحيح الياء واستقرارها مثل: ضِيزَى", "قلب الياء ألفاً", "قلب الياء همزة"], ans: 1, exp: "وجوب تصحيح الياء واستقرارها ومثاله قسمة ضيزى[cite: 6]." },
+        { q: "8. السبب الصرفي في قلب الياء واواً في كلمة (مُوقِن) هو:", ops: ["وقوع الياء ساكنة مفردة بعد ضمة في غير الجمع", "وقوع الياء متطرفة بعد ألف زائدة", "وقوع الياء عيناً لجمع تكسير", "وقوع الياء لَاماً لـ (فُعْلَى) صِفَةً"], ans: 0, exp: "لأنها اسم فاعل من أيقن أصلها مُيْقِن، أفردت وساكنت بعد ضمة في غير الجمع[cite: 6]." },
+        { q: "9. الكلمة التي تمثل إبدال الياء واواً لمجيئها لَاماً لـ (فَعْلَى) اسماً هي:", ops: ["رَضَوَى", "حُزْوَى", "دُنْيَا", "عُلْيَا"], ans: 0, exp: "رضوى اسم جبل أصلها رَضَيَى بالياء قلبت واواً[cite: 6]." },
+        { q: "10. أصل كلمة (طُوبَى) الصرفي قبل الإعلال والإبدال هو:", ops: ["طُيْبَى", "طَوْبَى", "طَابَى", "طُبْيَى"], ans: 0, exp: "من الطيب، أصلها (طُيْبَى) عين اسم على وزن فُعْلَى فقلبت الواو ياءً[cite: 6]." },
+        { q: "11. الشرط الأساسي لقلب الواو والياء ألفاً في نحو (خَافَ) و(هَابَ) و(صَانَ) هو:", ops: ["أن تحركا وتفتح ما بعدهما", "أن تحركا وانفتح ما قبلهما", "أن تسكنا وانفتح ما قبلهما", "أن تحركا وانضم ما قبلهما"], ans: 1, exp: "الشرط العام الأساسي: أن تتحرك الواو أو الياء وينفتح ما قبلهما[cite: 6]." },
+        { q: "12. الأصل الصرفي للفعل (صَانَ) قبل قلب الواو ألفاً هو:", ops: ["صَوَنَ", "صِوَنَ", "صُوِنَ", "صَوْنَ"], ans: 0, exp: "تحركت الواو وانفتح ما قبلها فقلبت ألفاً لتصير صَانَ[cite: 6]." },
+        { q: "13. الأصل الصرفي للفعل (هَابَ) قبل قلب الياء ألفاً هو:", ops: ["هَيَبَ", "هِيَبَ", "هُيِبَ", "هَيْبَ"], ans: 0, exp: "تحركت الياء بالفتح وانفتح ما قبلها فقلبت ألفاً لتصير هَابَ[cite: 6]." },
+        { q: "14. التغير الصرفي الذي حدث في الفعلين (خَافَ) و(هَابَ) يُعدّ:", ops: ["إعلالاً بالنقل", "إعلالاً بالحذف", "إعلالاً بالقلب (إبدال عليل من عليل)", "إبدال صحيح من صحيح"], ans: 2, exp: "إعلال بالقلب بقلب حرف العلة (الواو والياء) إلى حرف علة آخر (الألف)[cite: 6]." },
+        { q: "15. تصح الواو ولا تُقْلَب ألفاً في مصدرَي (التَّعَاوُن) و(التَّحَاوُر) لأن:", ops: ["الواو غير متحركة", "غير متطرف", "ما قبل الواو غير مفتوح ((ساكن))", "الواو جاءت متطرفة"], ans: 2, exp: "لأن الواو سبقت بألف ساكنة فلم ينفتح ما قبلها[cite: 6]." },
+        { q: "16. الفعل (مَال) أصله الصرفي (مَيَلَ)، والحكم الصرفي للياء فيه:", ops: ["وجوب قلب الياء ألفاً لتحركها وانفتاح ما قبلها", "وجوب قلب الياء واواً", "وجوب تصحيح الياء", "جواز القلب والتصحيح"], ans: 0, exp: "تحركت الياء وانفتح ما قبلها فوجب قلبها ألفاً[cite: 6]." },
+        { q: "17. امتنع قلب الواو ألفاً في نحو (القَوَد) و(الخَوَر) و(العَوَر) في وزن (فَعِلَ) لأن:", ops: ["عين الفعل غير متحركة", "الفعل دال على عيب أو خَلَق ظاهر بوزن (فَعِلَ) فصَحّت عينه حَمْلاً على صفته المشبهة (أَعْوَر)", "ما قبل الواو مضموم", "ما بعد الواو ساكن"], ans: 1, exp: "لأن الوصف منها على أفعل الذي مؤنثه فعلاء وهي دالة على عيب أو لون ظاهر[cite: 6]." },
+        { q: "18. امتنع قلب الياء ألفاً في (الحَيَدَان) و(السَّيَلَان) لأن:", ops: ["الياء ساكنة", "العين تلاها ما آخره زيادة تختص بالأسماء (الألف والنون) الدالة على الحركة والاضطراب", "الياء مضمومة", "ما قبل الياء مكسور"], ans: 1, exp: "لأن بعد العين زيادة تختص بالأسماء دالة على الحركة والاضطراب[cite: 6]." },
+        { q: "19. في الفعل (انْقَادَ)، أصله (انْقَوَدَ)، قُلِبت الواو ألفاً لـ:", ops: ["تحركها بحركة أصلية وانفتاح ما قبلها", "وقوعها بعد ضمة", "وقوعها عيناً لمصدر", "تطرفها حقيقة"], ans: 0, exp: "تحركت الواو وانفتح ما قبلها فقلبت ألفاً[cite: 6]." },
+        { q: "20. تصح الواو والياء ولا تُقْلَبَان ألفاً إذا سَكَنَتا ومثاله الصرفي:", ops: ["القَول والبَيع", "صَانَ وهَابَ", "دَعَا وَرَمَى", "انْقَادَ وَاسْتَجَابَ"], ans: 0, exp: "سكنت الواو في القول وسكنت الياء في البيع وانفتح ما قبلهما فلم تقلقبا[cite: 6]." },
+        { q: "21. الكلمة التي صَحَّت فيها الياء ولم تُقْلَب واواً في (فُعْلَى) صِفَةً هي:", ops: ["ضِيزَى", "دُنْيَا", "عُلْيَا", "فَتْوَى"], ans: 0, exp: "ضيزى صفة غير جارية مجرى الأسماء فصحّت ياؤها[cite: 6]." },
+        { q: "22. الكلمة التى يجوز فيها قلب الياء ألفا ويجوز تصحيحها عند ابن مالك هي:", ops: ["ضوقي", "طوبي", "حيكى", "ضيزى"], ans: 2, exp: "كلمة حيكى تجوز فيها الأوجه عند ابن مالك[cite: 6]." },
+        { q: "23. الكلمة التى يجب إعلالها عند الجمهور هي:", ops: ["ضوقي", "طوبي", "حيكى", "ضيزى"], ans: 2, exp: "حيكى تجب إعلالها عند الجمهور بقلب الياء واواً[cite: 6]." },
+        { q: "24. كلمة (قَوَى) مخفف (قَوْيَ) امتنع فيها إبدال الواو ياءً عند اجتماع الواو والياء لأن:", ops: ["الحركة غير اصلية", "الحركة اصلية", "الياء مشددة", "الواو ساكنة أصالة"], ans: 0, exp: "لأن السكون فيه عارض للتخفيف أصلها قَوِيَ[cite: 6]." },
+        { q: "25. امتنع قلب الياء والواو ألفاً في (البَيْع) و(القَوْل) لسبب صرفي هو:", ops: ["سكون الواو والياء وانفتاح ما قبلهما", "انكسار ما قبلهما", "وقوعهما في موضع الفاء", "تحرك ما بعدهما"], ans: 0, exp: "لأن الشرط تحركهما وانفتاح ما قبلهما وهنا هما ساكنتان[cite: 6]." }
+    ];
+
+    let userAnswers = {};
+    let studentName = "";
+    let teacherPhone = "";
+
+    function startExam() {
+        studentName = document.getElementById('student-name').value.trim();
+        teacherPhone = document.getElementById('teacher-phone').value.trim();
+        if(!studentName) { alert("يرجى إدخال اسم الطالب أولاً!"); return; }
+
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('exam-screen').style.display = 'block';
+        document.getElementById('display-name').innerText = studentName;
+        document.getElementById('total-count').innerText = questions.length;
+
+        renderQuestions();
+    }
+
+    function renderQuestions() {
+        const container = document.getElementById('questions-container');
+        container.innerHTML = "";
+        
+        questions.forEach((q, idx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'card question-card';
+            qDiv.innerHTML = `
+                <div class="question-title">${q.q}</div>
+                <div class="options-container">
+                    ${q.ops.map((op, oIdx) => `
+                        <div class="option-btn" id="q${idx}_op${oIdx}" onclick="selectOption(${idx},${oIdx})">
+                            ${op}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="feedback" id="fb_${idx}"></div>
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function selectOption(qIdx, opIdx) {
+        userAnswers[qIdx] = opIdx;
+        questions[qIdx].ops.forEach((_, oIdx) => {
+            const btn = document.getElementById(`q${qIdx}_op${oIdx}`);
+            if(oIdx === opIdx) btn.classList.add('selected');
+            else btn.classList.remove('selected');
+        });
+        document.getElementById('answered-count').innerText = Object.keys(userAnswers).length;
+    }
+
+    function finishExam() {
+        if(Object.keys(userAnswers).length < questions.length) {
+            if(!confirm("لم تقم بالإجابة عن جميع الأسئلة، هل أنت تأكد من التسليم النهائي؟")) return;
+        }
+
+        let score = 0;
+        questions.forEach((q, idx) => {
+            const fb = document.getElementById(`fb_${idx}`);
+            fb.style.display = 'block';
+            if(userAnswers[idx] === q.ans) {
+                score++;
+                fb.className = 'feedback correct-fb';
+                fb.innerHTML = `✓ إجابة صحيحة! <br><small><strong>التعليل:</strong> ${q.exp}</small>`;
+            } else {
+                fb.className = 'feedback incorrect-fb';
+                fb.innerHTML = `✗ إجابة خاطئة! الإجابة الصحيحة هي: <strong>${q.ops[q.ans]}</strong><br><small><strong>التعليل الصرفي:</strong> ${q.exp}</small>`;
+            }
+        });
+
+        document.getElementById('result-screen').style.display = 'block';
+        document.getElementById('final-score').innerText = `${score} / ${questions.length}`;
+        
+        const pct = (score / questions.length) * 100;
+        let badge = "ممتاز 🌟";
+        if(pct < 50) badge = "يحتاج إلى مراجعة ⚠️";
+        else if(pct < 75) badge = "جيد جداً 👍";
+        
+        document.getElementById('grade-badge').innerText = badge;
+        document.getElementById('result-time').innerText = `تاريخ ووقت التسليم: ${new Date().toLocaleString('ar-EG')}`;
+
+        const message = encodeURIComponent(
+            `*نتيجة اختبار الصرف: عادل هاشم الياء واو ، والواو والياء الف*\n` +
+            `👤 *اسم الطالب:* ${studentName}\n` +
+            `📊 *الدرجة:* ${score} من ${questions.length} (${pct.toFixed(1)}%)\n` +
+            `🎖️ *التقدير:* ${badge}\n` +
+            `📅 *تاريخ التسليم:* ${new Date().toLocaleDateString('ar-EG')}`
+        );
+
+        const waBtn = document.getElementById('wa-link');
+        if(teacherPhone) {
+            waBtn.href = `https://wa.me/${teacherPhone}?text=${message}`;
+        } else {
+            waBtn.href = `https://wa.me/?text=${message}`;
+        }
+        
+        window.scrollTo({ top: document.getElementById('result-screen').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function resetExam() {
+        userAnswers = {};
+        document.getElementById('result-screen').style.display = 'none';
+        document.getElementById('exam-screen').style.display = 'none';
+        document.getElementById('start-screen').style.display = 'block';
+        document.getElementById('student-name').value = "";
+    }
+</script>
+</body>
+</html>
